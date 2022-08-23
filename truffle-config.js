@@ -60,8 +60,8 @@ module.exports = {
 
   networks: {
     development: {
-      host: "127.0.0.1",
-      port: 7545,  
+      host: "",
+      port: ,  
       network_id: "*",
     }
     
@@ -127,10 +127,7 @@ module.exports = {
       // }
     }
   }, 
-  browser: {
-    "crypto": false,
-    "stream": false
-  }
+
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
   // false to enabled: true. The default storage location can also be
