@@ -98,7 +98,7 @@ class App extends Component {
       <div>
         <Navbar account={this.state.account} />
         { this.state.loading
-          ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
+          ? <div id="loader" className="text-center mt-5"><p>Need to install metamask...</p></div>
           : <Main
               posts={this.state.posts}
               createPost={this.createPost}
