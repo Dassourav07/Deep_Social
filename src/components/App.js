@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-
+import Identicon from 'identicon.js';
 import './App.css';
 import SocialNetwork from '../abis/SocialNetwork.json'
 import Navbar from './Navbar'
 import Main from './Main'
 
- 
-
 class App extends Component {
 
   async componentWillMount() {
-    // Detect Metamask
-    const metamaskInstalled = typeof window.web3 !== 'undefined'
-    this.setState({  metamaskInstalled })
-    if (metamaskInstalled) {
-      await this.loadWeb3()
-      await this.loadBlockchainData()
-    }
+    await this.loadWeb3()
+    await this.loadBlockchainData()
   }
 
   async loadWeb3() {
@@ -37,7 +30,7 @@ class App extends Component {
     const web3 = window.web3
     // Load account
     const accounts = await web3.eth.getAccounts()
-    this.setState({ account:accounts[0] })
+    this.setState({ account: accounts[0] })
     // Network ID
     const networkId = await web3.eth.net.getId()
     const networkData = SocialNetwork.networks[networkId]
@@ -59,7 +52,7 @@ class App extends Component {
       })
       this.setState({ loading: false})
     } else {
-      window.alert('SocialNetwork contract not deployed to detected network.')
+      window.alert('Deepsocial contract not deployed to detected network.')
     }
   }
 
@@ -98,7 +91,7 @@ class App extends Component {
       <div>
         <Navbar account={this.state.account} />
         { this.state.loading
-          ? <div id="loader" className="text-center mt-5"><p>Need to install metamask...</p></div>
+          ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
               posts={this.state.posts}
               createPost={this.createPost}
